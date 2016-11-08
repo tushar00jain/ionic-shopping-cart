@@ -1,6 +1,7 @@
 function setupAuth(User, Config, app) {
   var passport = require('passport');
   var FacebookStrategy = require('passport-facebook').Strategy;
+  console.log(Config)
 
   // High level serialize/de-serialize configuration for passport
   passport.serializeUser(function(user, done) {
@@ -18,9 +19,11 @@ function setupAuth(User, Config, app) {
     {
       clientID: Config.facebookClientId,
       clientSecret: Config.facebookClientSecret,
-      callbackURL: 'http://localhost:3000/auth/facebook/callback'
+      callbackURL: 'http://localhost:3000/auth/facebook/callback',
+      profileFields: ['id', 'displayName', 'photos', 'email']
     },
     function(accessToken, refreshToken, profile, done) {
+      console.log(profile)
       if (!profile.emails || !profile.emails.length) {
         return done('No emails associated with this account!');
       }
