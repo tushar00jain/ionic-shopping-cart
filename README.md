@@ -19,3 +19,4 @@ mongostore -d test -c products server/dump/test/products.bson
 node server/index.js
 ionic serve --lab
 ```
+Complete 'server/config.json'
